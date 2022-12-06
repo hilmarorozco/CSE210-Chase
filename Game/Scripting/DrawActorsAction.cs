@@ -24,6 +24,9 @@ namespace Unit05.Game.Scripting
         /// <inheritdoc/>
         public void Execute(Cast cast, Script script)
         {
+            Actor food = cast.GetFirstActor("food");
+            Actor score = cast.GetFirstActor("score");
+
             Cycle cycleA = (Cycle)cast.GetFirstActor("cycleA");
             List<Actor> segmentsA = cycleA.GetSegments();
 
@@ -39,9 +42,8 @@ namespace Unit05.Game.Scripting
             _videoService.ClearBuffer();
             _videoService.DrawActors(segmentsA);
             _videoService.DrawActors(segmentsB);
-            //_videoService.DrawActor(scoreA);
-            //_videoService.DrawActor(scoreB);
-            //_videoService.DrawActor(food);
+            _videoService.DrawActor(score);
+            _videoService.DrawActor(food);
             _videoService.DrawActors(messages);
             _videoService.FlushBuffer();
         }

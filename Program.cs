@@ -38,6 +38,7 @@ namespace Unit05
             Cast cast = new Cast();
             cast.AddActor("cycleA", cycleA);
             cast.AddActor("cycleB", cycleB);
+            cast.AddActor("score", new Score());
             // cast.AddActor("scoreA", new ScoreA());
             // cast.AddActor("scoreB", new ScoreB());
 
