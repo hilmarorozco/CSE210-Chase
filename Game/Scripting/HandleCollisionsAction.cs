@@ -74,7 +74,7 @@ namespace Unit05.Game.Scripting
             //ScoreA scoreA = (ScoreA)cast.GetFirstActor("scoreA");
             //ScoreB scoreB = (ScoreB)cast.GetFirstActor("scoreB");
 
-            // private int increment = 1;
+
             cycleA.GrowTail(1);
             cycleB.GrowTail(1);            
 
