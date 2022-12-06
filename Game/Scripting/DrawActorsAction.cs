@@ -43,7 +43,7 @@ namespace Unit05.Game.Scripting
             _videoService.DrawActors(segmentsA);
             _videoService.DrawActors(segmentsB);
             _videoService.DrawActor(score);
-            // _videoService.DrawActor(food);
+            _videoService.DrawActor(food);
             _videoService.DrawActors(messages);
             _videoService.FlushBuffer();
         }

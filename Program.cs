@@ -27,17 +27,11 @@ namespace Unit05
             //cycleB.PrepareBody(new Point(225,150), Constants.BLUE);
             
 
-            //cycleB.GrowTail(Constants.LIGHTBLUE);
-            // cycleA.PrepareBody(new Point((Constants.MAX_X/(-4)),(Constants.MAX_X/2)), Constants.LIGHTRED);
-            // cycleB.PrepareBody(new Point((Constants.MAX_X/(4)),(Constants.MAX_X/2)), Constants.LIGHTBLUE);
-            
-            
-            
-
             // create the cast
             Cast cast = new Cast();
             cast.AddActor("cycleA", cycleA);
             cast.AddActor("cycleB", cycleB);
+            cast.AddActor("food", new Food());
             cast.AddActor("score", new Score());
             // cast.AddActor("scoreA", new ScoreA());
             // cast.AddActor("scoreB", new ScoreB());
