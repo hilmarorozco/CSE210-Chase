@@ -78,10 +78,10 @@ namespace Unit05.Game.Scripting
             }
 
             Cycle cycleB = (Cycle)cast.GetFirstActor("cycleB");
-            cycleB.TurnHead(_directionA);
+            cycleB.TurnHead(_directionB);
 
             Cycle cycleA = (Cycle)cast.GetFirstActor("cycleA");
-            cycleA.TurnHead(_directionB);
+            cycleA.TurnHead(_directionA);
 
         }
     }

@@ -19,11 +19,11 @@ namespace Unit05
         static void Main(string[] args)
         {
             Cycle cycleA = new Cycle();
-            cycleA.PrepareBody(new Point(-225,150));
+            cycleA.PrepareBody(new Point(225,150));
             //cycleA.PrepareBody(new Point(-225,150), Constants.RED);
             
             Cycle cycleB = new Cycle();
-            cycleB.PrepareBody(new Point(225,150));
+            cycleB.PrepareBody(new Point(-225,150));
             //cycleB.PrepareBody(new Point(225,150), Constants.BLUE);
             
 
