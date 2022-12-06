@@ -20,7 +20,7 @@ namespace Unit05.Game
 
         public static int FRAME_RATE = 15;
         public static int FONT_SIZE = 15;
-        public static string CAPTION = "Cycle";
+        public static string CAPTION = "Chaser";
         public static int SNAKE_LENGTH = 1;
 
         public static Color RED = new Color(255, 0, 0);

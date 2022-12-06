@@ -55,7 +55,7 @@ namespace Unit05.Game.Scripting
             if (cycleA.GetHead().GetPosition().Equals(food.GetPosition()))
             {
                 int points = food.GetPoints();
-                cycleA.GrowTail(points);
+                //cycleA.GrowTail(points);
                 score.AddPoints(points);
                 food.Reset();
             }
