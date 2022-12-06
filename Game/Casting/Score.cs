@@ -28,7 +28,7 @@ namespace Unit05.Game.Casting
         public void AddPoints(int points)
         {
             this._points += points;
-            SetText($"Score: {this._points}");
+            SetText($"Coins: {this._points}");
         }
     }
 }

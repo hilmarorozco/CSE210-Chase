@@ -75,17 +75,11 @@ namespace Unit05.Game.Scripting
             //ScoreB scoreB = (ScoreB)cast.GetFirstActor("scoreB");
 
 
-            cycleA.GrowTail(1);
-            cycleB.GrowTail(1);            
+            // cycleA.GrowTail(1);
+            // cycleB.GrowTail(1);            
 
             
-            //Food food = (Food)cast.GetFirstActor("food");
-            
-            // for (int i = 0; i <= 10; i = i + 1)
-            // {
-            //     cycleA.GrowTail(1);
-            //     cycleB.GrowTail(1);
-            // }
+
         }
 
         /// <summary>
@@ -102,33 +96,40 @@ namespace Unit05.Game.Scripting
             Actor headB = cycleB.GetHead();
             List<Actor> bodyB = cycleB.GetBody();
 
-            foreach (Actor segmentA in bodyA)
+
+            if (headA.GetPosition().Equals(headB.GetPosition()))
             {
-                if (segmentA.GetPosition().Equals(headB.GetPosition()))
-                {
-                    _isGameOver = true;
-                    winnerCycleA = true;
-                }
-                if (segmentA.GetPosition().Equals(headA.GetPosition()))
-                {
-                    _isGameOver = true;
-                    winnerCycleB = true;
-                }
+                _isGameOver = true;
+                winnerCycleB = true;
             }
 
-            foreach (Actor segmentB in bodyB) 
-            {
-                if (segmentB.GetPosition().Equals(headA.GetPosition()))
-                {
-                    _isGameOver = true;
-                    winnerCycleB = true; 
-                }
-                if (segmentB.GetPosition().Equals(headB.GetPosition()))
-                {
-                    _isGameOver = true;
-                    winnerCycleA = true;
-                }
-            }
+            // foreach (Actor segmentA in bodyA)
+            // {
+            //     if (segmentA.GetPosition().Equals(headB.GetPosition()))
+            //     {
+            //         _isGameOver = true;
+            //         winnerCycleA = true;
+            //     }
+            //     if (segmentA.GetPosition().Equals(headA.GetPosition()))
+            //     {
+            //         _isGameOver = true;
+            //         winnerCycleB = true;
+            //     }
+            // }
+
+            // foreach (Actor segmentB in bodyB) 
+            // {
+            //     if (segmentB.GetPosition().Equals(headA.GetPosition()))
+            //     {
+            //         _isGameOver = true;
+            //         winnerCycleB = true; 
+            //     }
+            //     if (segmentB.GetPosition().Equals(headB.GetPosition()))
+            //     {
+            //         _isGameOver = true;
+            //         winnerCycleA = true;
+            //     }
+            // }
         }
 
         private void HandleGameOver(Cast cast)

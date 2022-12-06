@@ -11,7 +11,7 @@ namespace Unit05.Game.Casting
     /// </summary>
     public class Food : Actor
     {
-        private int _points = 0;
+        public int _points = 0;
 
         /// <summary>
         /// Constructs a new instance of an Food.
@@ -38,7 +38,9 @@ namespace Unit05.Game.Casting
         public void Reset()
         {
             Random random = new Random();
-            _points = random.Next(9);
+            _points = 1;
+            
+            // _points = random.Next(9);
             int x = random.Next(Constants.COLUMNS);
             int y = random.Next(Constants.ROWS);
             Point position = new Point(x, y);
