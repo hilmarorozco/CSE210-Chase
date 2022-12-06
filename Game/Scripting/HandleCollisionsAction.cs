@@ -52,13 +52,13 @@ namespace Unit05.Game.Scripting
             Score score = (Score)cast.GetFirstActor("score");
             Food food = (Food)cast.GetFirstActor("food");
             
-            // if (cycleA.GetHead().GetPosition().Equals(food.GetPosition()))
-            // {
-                // int points = food.GetPoints();
-                // //snake.GrowTail(points);
-                // score.AddPoints(points);
-                // food.Reset();
-            // }
+            if (cycleA.GetHead().GetPosition().Equals(food.GetPosition()))
+            {
+                int points = food.GetPoints();
+                cycleA.GrowTail(points);
+                score.AddPoints(points);
+                food.Reset();
+            }
         }
 
         /// <summary>
