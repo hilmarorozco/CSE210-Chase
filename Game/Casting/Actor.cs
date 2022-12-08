@@ -16,7 +16,7 @@ namespace Unit05.Game.Casting
         private Color _color = Constants.WHITE;
         private Point _position = new Point(0, 0);
         private Point _velocity = new Point(0, 0);
-        private int _points = 2;
+        public int _points=0;
 
         /// <summary>
         /// Constructs a new instance of Actor.
@@ -93,7 +93,10 @@ namespace Unit05.Game.Casting
             }
             this._color = color;
         }
-
+        public void SetPoints(int points)
+        {
+            _points = points;
+        }
         public int GetPoints()
         {
             return _points;

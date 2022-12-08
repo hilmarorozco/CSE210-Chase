@@ -31,10 +31,8 @@ namespace Unit05
             cast.AddActor("cycleA", cycleA);
             cast.AddActor("cycleB", cycleB);
             Food food = new Food();
+            
             food.Reset(cast);
-            Food obstacle = new Food();
-
-            obstacle.Reset(cast);
             cast.AddActor("score", new Score());
             // cast.AddActor("scoreA", new ScoreA());
             // cast.AddActor("scoreB", new ScoreB());

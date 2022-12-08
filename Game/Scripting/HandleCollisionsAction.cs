@@ -19,6 +19,7 @@ namespace Unit05.Game.Scripting
         private bool winnerCycleA = false;
         private bool winnerCycleB = false;
         private int i = 0;
+        private int total;
 
         /// <summary>
         /// Constructs a new instance of HandleCollisionsAction.
@@ -53,8 +54,12 @@ namespace Unit05.Game.Scripting
                 {
                     int points = dot.GetPoints();
                     //cycleA.GrowTail(points);
-                    score.AddPoints(points);
-                    // food.Reset(Cast);
+                    total=score.AddPoints(points);
+                    if (total>=1)
+                    {
+                        winnerCycleA = true;
+                        _isGameOver = true;
+                    }
                 }
             }
         }
@@ -167,7 +172,7 @@ namespace Unit05.Game.Scripting
                     Actor message = new Actor();
                     message.SetFontSize(50);
                     message.SetColor(Constants.RED);
-                    message.SetText("Game Over! Red Cycle Wins!");
+                    message.SetText("Game Over! Player 1 Wins");
                     message.SetPosition(position);
                     cast.AddActor("messages", message);
 
@@ -190,7 +195,7 @@ namespace Unit05.Game.Scripting
                     Actor message = new Actor();
                     message.SetFontSize(50);
                     message.SetColor(Constants.BLUE);
-                    message.SetText("Game Over! Blue Cycle Wins!");
+                    message.SetText("Game Over The Chaser Caught You!");
                     message.SetPosition(position);
                     cast.AddActor("messages", message);
 

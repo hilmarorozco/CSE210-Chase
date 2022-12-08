@@ -25,10 +25,11 @@ namespace Unit05.Game.Casting
         /// Adds the given points to the score.
         /// </summary>
         /// <param name="points">The points to add.</param>
-        public void AddPoints(int points)
+        public int AddPoints(int points)
         {
-            this._points += points;
-            SetText($"Coins: {this._points}");
+            _points += points;
+            SetText($"Coins: {_points}");
+            return _points;
         }
     }
 }

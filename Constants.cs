@@ -12,8 +12,8 @@ namespace Unit05.Game
     /// </summary>
     public class Constants
     {
-        public static int COLUMNS = 40;
-        public static int ROWS = 20;
+        public static int COLUMNS = 900;
+        public static int ROWS = 600;
         public static int CELL_SIZE = 15;
         public static int MAX_X = 900;
         public static int MAX_Y = 600;

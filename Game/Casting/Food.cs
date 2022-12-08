@@ -10,7 +10,7 @@ namespace Unit05.Game.Casting
     /// </summary>
     public class Food : Actor
     {
-        public int _points = 0;
+        private bool counter=true;
 
         /// <summary>
         /// Constructs a new instance of an Food.
@@ -26,15 +26,7 @@ namespace Unit05.Game.Casting
         /// Gets the points this food is worth.
         /// </summary>
         /// <returns>The points.</returns>
-        public void SetPoints(int points)
-        {
-            _points = points;
-        }
-
-        public int GetPoints()
-        {
-            return _points;
-        }
+    
 
         /// <summary>
         /// Selects a random position and points that the food is worth.
@@ -51,10 +43,22 @@ namespace Unit05.Game.Casting
                 position = position.Scale(Constants.CELL_SIZE);
                 Food dot = new Food();
                 dot.SetPosition(position);
-                dot.SetText("O");
-                _points = 1;
-                dot.SetColor(Constants.GREEN);
-                cast.AddActor("food", dot);
+                if (counter == true)
+                {
+                    dot.SetText("O");
+                    dot.SetColor(Constants.GREEN);
+                    dot.SetPoints(1);
+                    cast.AddActor("food", dot);
+                    counter = !counter;
+                }
+                else if (counter ==false)
+                {
+                    dot.SetText("X");
+                    dot.SetColor(Constants.LIGHTRED);
+                    dot.SetPoints(-5);
+                    cast.AddActor("food", dot);
+                    counter = !counter;   
+                }
             }
             return cast;
         }
