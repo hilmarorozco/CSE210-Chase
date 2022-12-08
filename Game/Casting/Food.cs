@@ -46,7 +46,7 @@ namespace Unit05.Game.Casting
                 if (counter == true)
                 {
                     dot.SetText("O");
-                    dot.SetColor(Constants.GREEN);
+                    dot.SetColor(Constants.YELLOW);
                     dot.SetPoints(1);
                     cast.AddActor("food", dot);
                     counter = !counter;
@@ -54,8 +54,8 @@ namespace Unit05.Game.Casting
                 else if (counter ==false)
                 {
                     dot.SetText("X");
-                    dot.SetColor(Constants.LIGHTRED);
-                    dot.SetPoints(-5);
+                    dot.SetColor(Constants.GREEN);
+                    dot.SetPoints(-2);
                     cast.AddActor("food", dot);
                     counter = !counter;   
                 }
