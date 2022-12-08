@@ -1,6 +1,5 @@
 using System;
 
-
 namespace Unit05.Game.Casting
 {
     /// <summary>
@@ -20,14 +19,18 @@ namespace Unit05.Game.Casting
         {
             SetText("O");
             //☢
-            SetColor(Constants.GREEN); 
-            Reset();
+            SetColor(Constants.GREEN);
         }
 
         /// <summary>
         /// Gets the points this food is worth.
         /// </summary>
         /// <returns>The points.</returns>
+        public void SetPoints(int points)
+        {
+            _points = points;
+        }
+
         public int GetPoints()
         {
             return _points;
@@ -36,17 +39,24 @@ namespace Unit05.Game.Casting
         /// <summary>
         /// Selects a random position and points that the food is worth.
         /// </summary>
-        public void Reset()
+        public Cast Reset(Cast cast)
         {
             Random random = new Random();
-            _points = 1;
-            
             // _points = random.Next(9);
-            int x = random.Next(Constants.COLUMNS);
-            int y = random.Next(Constants.ROWS);
-            Point position = new Point(x, y);
-            position = position.Scale(Constants.CELL_SIZE);
-            SetPosition(position);
+            for (int i = 0; i < 25; i++)
+            {
+                int x = random.Next(Constants.COLUMNS);
+                int y = random.Next(Constants.ROWS);
+                Point position = new Point(x, y);
+                position = position.Scale(Constants.CELL_SIZE);
+                Food dot = new Food();
+                dot.SetPosition(position);
+                dot.SetText("O");
+                _points = 1;
+                dot.SetColor(Constants.GREEN);
+                cast.AddActor("food", dot);
+            }
+            return cast;
         }
     }
 }
