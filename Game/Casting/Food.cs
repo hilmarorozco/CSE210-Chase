@@ -1,6 +1,5 @@
 using System;
 
-
 namespace Unit05.Game.Casting
 {
     /// <summary>
@@ -11,7 +10,7 @@ namespace Unit05.Game.Casting
     /// </summary>
     public class Food : Actor
     {
-        public int _points = 0;
+        private bool counter=true;
 
         /// <summary>
         /// Constructs a new instance of an Food.
@@ -20,33 +19,48 @@ namespace Unit05.Game.Casting
         {
             SetText("O");
             //☢
-            SetColor(Constants.GREEN); 
-            Reset();
+            SetColor(Constants.GREEN);
         }
 
         /// <summary>
         /// Gets the points this food is worth.
         /// </summary>
         /// <returns>The points.</returns>
-        public int GetPoints()
-        {
-            return _points;
-        }
+    
 
         /// <summary>
         /// Selects a random position and points that the food is worth.
         /// </summary>
-        public void Reset()
+        public Cast Reset(Cast cast)
         {
             Random random = new Random();
-            _points = 1;
-            
             // _points = random.Next(9);
-            int x = random.Next(Constants.COLUMNS);
-            int y = random.Next(Constants.ROWS);
-            Point position = new Point(x, y);
-            position = position.Scale(Constants.CELL_SIZE);
-            SetPosition(position);
+            for (int i = 0; i < 25; i++)
+            {
+                int x = random.Next(Constants.COLUMNS);
+                int y = random.Next(Constants.ROWS);
+                Point position = new Point(x, y);
+                position = position.Scale(Constants.CELL_SIZE);
+                Food dot = new Food();
+                dot.SetPosition(position);
+                if (counter == true)
+                {
+                    dot.SetText("O");
+                    dot.SetColor(Constants.GREEN);
+                    dot.SetPoints(1);
+                    cast.AddActor("food", dot);
+                    counter = !counter;
+                }
+                else if (counter ==false)
+                {
+                    dot.SetText("X");
+                    dot.SetColor(Constants.LIGHTRED);
+                    dot.SetPoints(-5);
+                    cast.AddActor("food", dot);
+                    counter = !counter;   
+                }
+            }
+            return cast;
         }
     }
 }

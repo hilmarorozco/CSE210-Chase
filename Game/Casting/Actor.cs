@@ -1,12 +1,11 @@
 using System;
 
-
 namespace Unit05.Game.Casting
 {
     /// <summary>
     /// <para>A thing that participates in the game.</para>
     /// <para>
-    /// The responsibility of Actor is to keep track of its appearance, position and velocity in 2d 
+    /// The responsibility of Actor is to keep track of its appearance, position and velocity in 2d
     /// space.
     /// </para>
     /// </summary>
@@ -17,13 +16,12 @@ namespace Unit05.Game.Casting
         private Color _color = Constants.WHITE;
         private Point _position = new Point(0, 0);
         private Point _velocity = new Point(0, 0);
+        public int _points=0;
 
         /// <summary>
         /// Constructs a new instance of Actor.
         /// </summary>
-        public Actor()
-        {
-        }
+        public Actor() { }
 
         /// <summary>
         /// Gets the actor's color.
@@ -71,8 +69,8 @@ namespace Unit05.Game.Casting
         }
 
         /// <summary>
-        /// Moves the actor to its next position according to its velocity. Will wrap the position 
-        /// from one side of the screen to the other when it reaches the maximum x and y 
+        /// Moves the actor to its next position according to its velocity. Will wrap the position
+        /// from one side of the screen to the other when it reaches the maximum x and y
         /// values.
         /// </summary>
         public virtual void MoveNext()
@@ -94,6 +92,14 @@ namespace Unit05.Game.Casting
                 throw new ArgumentException("color can't be null");
             }
             this._color = color;
+        }
+        public void SetPoints(int points)
+        {
+            _points = points;
+        }
+        public int GetPoints()
+        {
+            return _points;
         }
 
         /// <summary>
@@ -153,6 +159,5 @@ namespace Unit05.Game.Casting
             }
             this._velocity = velocity;
         }
-
     }
 }

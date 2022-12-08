@@ -4,13 +4,12 @@ using System.Data;
 using Unit05.Game.Casting;
 using Unit05.Game.Services;
 
-
 namespace Unit05.Game.Scripting
 {
     /// <summary>
     /// <para>An update action that handles interactions between the actors.</para>
     /// <para>
-    /// The responsibility of HandleCollisionsAction is to handle the situation when the snake 
+    /// The responsibility of HandleCollisionsAction is to handle the situation when the snake
     /// collides with the food, or the snake collides with its segments, or the game is over.
     /// </para>
     /// </summary>
@@ -20,20 +19,18 @@ namespace Unit05.Game.Scripting
         private bool winnerCycleA = false;
         private bool winnerCycleB = false;
         private int i = 0;
+        private int total;
 
         /// <summary>
         /// Constructs a new instance of HandleCollisionsAction.
         /// </summary>
-        public HandleCollisionsAction()
-        {
-        }
+        public HandleCollisionsAction() { }
 
         /// <inheritdoc/>
         public void Execute(Cast cast, Script script)
         {
             if (_isGameOver == false)
             {
-                
                 HandleIncrement(cast);
                 HandleSegmentCollisions(cast);
                 HandleGameOver(cast);
@@ -50,14 +47,20 @@ namespace Unit05.Game.Scripting
             //Snake snake = (Snake)cast.GetFirstActor("snake");
             Cycle cycleA = (Cycle)cast.GetFirstActor("cycleA");
             Score score = (Score)cast.GetFirstActor("score");
-            Food food = (Food)cast.GetFirstActor("food");
-            
-            if (cycleA.GetHead().GetPosition().Equals(food.GetPosition()))
+            List<Actor> food = cast.GetActors("food");
+            foreach (Actor dot in food)
             {
-                int points = food.GetPoints();
-                //cycleA.GrowTail(points);
-                score.AddPoints(points);
-                food.Reset();
+                if (cycleA.GetHead().GetPosition().Equals(dot.GetPosition()))
+                {
+                    int points = dot.GetPoints();
+                    //cycleA.GrowTail(points);
+                    total=score.AddPoints(points);
+                    if (total>=1)
+                    {
+                        winnerCycleA = true;
+                        _isGameOver = true;
+                    }
+                }
             }
         }
 
@@ -76,10 +79,7 @@ namespace Unit05.Game.Scripting
 
 
             // cycleA.GrowTail(1);
-            // cycleB.GrowTail(1);            
-
-            
-
+            // cycleB.GrowTail(1);
         }
 
         /// <summary>
@@ -95,7 +95,6 @@ namespace Unit05.Game.Scripting
             Cycle cycleB = (Cycle)cast.GetFirstActor("cycleB");
             Actor headB = cycleB.GetHead();
             List<Actor> bodyB = cycleB.GetBody();
-
 
             if (headA.GetPosition().Equals(headB.GetPosition()))
             {
@@ -117,12 +116,12 @@ namespace Unit05.Game.Scripting
             //     }
             // }
 
-            // foreach (Actor segmentB in bodyB) 
+            // foreach (Actor segmentB in bodyB)
             // {
             //     if (segmentB.GetPosition().Equals(headA.GetPosition()))
             //     {
             //         _isGameOver = true;
-            //         winnerCycleB = true; 
+            //         winnerCycleB = true;
             //     }
             //     if (segmentB.GetPosition().Equals(headB.GetPosition()))
             //     {
@@ -146,14 +145,13 @@ namespace Unit05.Game.Scripting
                 foreach (Actor segment in segmentsA)
                 {
                     segment.SetColor(Constants.LIGHTRED);
-                }      
+                }
 
                 foreach (Actor segment in segmentsB)
                 {
                     segment.SetColor(Constants.LIGHTBLUE);
-                }       
+                }
             }
-            
             else if (_isGameOver == true)
             {
                 Cycle cycleA = (Cycle)cast.GetFirstActor("cycleA");
@@ -163,8 +161,9 @@ namespace Unit05.Game.Scripting
                 List<Actor> segmentsB = cycleB.GetSegments();
                 //Food food = (Food)cast.GetFirstActor("food");
 
-                
-                if (winnerCycleA == true){
+
+                if (winnerCycleA == true)
+                {
                     // create a "game over" message
                     int x = Constants.MAX_X / 8;
                     int y = Constants.MAX_Y / 2;
@@ -173,9 +172,9 @@ namespace Unit05.Game.Scripting
                     Actor message = new Actor();
                     message.SetFontSize(50);
                     message.SetColor(Constants.RED);
-                    message.SetText("Game Over! Red Cycle Wins!");
+                    message.SetText("Game Over! Player 1 Wins");
                     message.SetPosition(position);
-                    cast.AddActor("messages", message);       
+                    cast.AddActor("messages", message);
 
                     foreach (Actor segment in segmentsB)
                     {
@@ -184,10 +183,10 @@ namespace Unit05.Game.Scripting
                     foreach (Actor segment in segmentsA)
                     {
                         segment.SetColor(Constants.RED);
-                    } 
+                    }
                 }
-
-                else if (winnerCycleB == true){
+                else if (winnerCycleB == true)
+                {
                     // create a "game over" message
                     int x = Constants.MAX_X / 8;
                     int y = Constants.MAX_Y / 2;
@@ -196,22 +195,19 @@ namespace Unit05.Game.Scripting
                     Actor message = new Actor();
                     message.SetFontSize(50);
                     message.SetColor(Constants.BLUE);
-                    message.SetText("Game Over! Blue Cycle Wins!");
+                    message.SetText("Game Over The Chaser Caught You!");
                     message.SetPosition(position);
-                    cast.AddActor("messages", message);     
+                    cast.AddActor("messages", message);
 
                     foreach (Actor segment in segmentsA)
                     {
                         segment.SetColor(Constants.WHITE);
-                    }     
+                    }
                     foreach (Actor segment in segmentsB)
                     {
                         segment.SetColor(Constants.BLUE);
-                    }            
+                    }
                 }
-
-
-
 
                 // // make everything white
                 // foreach (Actor segment in segmentsA)
@@ -222,11 +218,7 @@ namespace Unit05.Game.Scripting
                 // {
                 //     segment.SetColor(Constants.WHITE);
                 // }
-                
-                
-                
             }
         }
-
     }
 }
