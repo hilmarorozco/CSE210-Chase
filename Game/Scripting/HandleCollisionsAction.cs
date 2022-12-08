@@ -55,11 +55,7 @@ namespace Unit05.Game.Scripting
                     int points = dot.GetPoints();
                     //cycleA.GrowTail(points);
                     total=score.AddPoints(points);
-                    if (total>=1)
-                    {
-                        winnerCycleA = true;
-                        _isGameOver = true;
-                    }
+                    
                 }
             }
         }
@@ -101,6 +97,11 @@ namespace Unit05.Game.Scripting
                 _isGameOver = true;
                 winnerCycleB = true;
             }
+            if (total>=20)
+                    {
+                        _isGameOver = true;
+                        winnerCycleA = true;
+                    }
 
             // foreach (Actor segmentA in bodyA)
             // {
@@ -193,9 +194,9 @@ namespace Unit05.Game.Scripting
                     Point position = new Point(x, y);
 
                     Actor message = new Actor();
-                    message.SetFontSize(50);
+                    message.SetFontSize(40);
                     message.SetColor(Constants.BLUE);
-                    message.SetText("Game Over The Chaser Caught You!");
+                    message.SetText("Game Over! The Chaser Caught You!");
                     message.SetPosition(position);
                     cast.AddActor("messages", message);
 
